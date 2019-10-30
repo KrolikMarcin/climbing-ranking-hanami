@@ -1,0 +1,2 @@
+module ClimbingRanking
+end

@@ -1,0 +1,3 @@
+project=climbing_ranking
+test=rspec
+template=erb
