@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dry-initializer'
+gem 'dry-transaction'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'rake'
