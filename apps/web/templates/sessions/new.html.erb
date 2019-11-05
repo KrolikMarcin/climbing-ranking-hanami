@@ -1,0 +1,22 @@
+
+<% unless params.valid? %>
+  <ul>
+    <% params.error_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%=
+  form_for form do
+    div do
+      label 'Email'
+      text_field :email
+    end
+    div do
+      label 'Password'
+      password_field :password
+    end
+    submit 'Sign in'
+  end
+%>
