@@ -10,7 +10,8 @@ gem 'rake'
 
 group :development do
   gem 'hanami-webconsole'
-  gem 'shotgun', platforms: :ruby
+  # TODO: fix shotgun issue
+  # gem 'shotgun', platforms: :ruby
 end
 
 group :test, :development do
