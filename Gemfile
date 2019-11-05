@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
+gem 'bcrypt'
 gem 'dry-initializer'
 gem 'dry-transaction'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
-gem 'rake'
-gem 'tachiban'
-
 gem 'pg'
+gem 'rake'
 
 group :development do
   gem 'hanami-webconsole'
