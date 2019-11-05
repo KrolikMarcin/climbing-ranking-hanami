@@ -8,9 +8,9 @@ module Web
         params SessionParams
 
         def call(params)
-          return self.status = 422 unless params.valid?
+          return unless params.valid?
 
-          create_session_transaction.call(email) { |m| handle_transaction(m) }
+          create_session_transaction.call(email, &method(:handle_transaction))
         end
 
         private
@@ -25,15 +25,13 @@ module Web
         end
 
         def handle_transaction(monad)
-          monad.success { redirect_to routes.root_path }
-          monad.failure(:find_user) do
-            self.status = 404
-            params.errors.add(:session, :email, 'not exists')
+          monad.success do
+            flash[:success] = 'The user has been logged in'
+            redirect_to routes.root_path
           end
-          monad.failure(:user_authenticated?) do
-            self.status = 422
-            params.errors.add(:session, :password, 'is invalid')
-          end
+
+          monad.failure(:find_user) { add_error(:email, 'not exists') }
+          monad.failure(:user_authenticated?) { add_error(:password, 'is invalid') }
         end
 
         def password
@@ -42,6 +40,10 @@ module Web
 
         def email
           params.get(:session).fetch(:email)
+        end
+
+        def add_error(attribute, message)
+          params.errors.add(:session, attribute, message)
         end
       end
     end
