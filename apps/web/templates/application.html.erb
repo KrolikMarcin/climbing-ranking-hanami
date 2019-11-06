@@ -5,6 +5,14 @@
     <%= favicon %>
   </head>
   <body>
+    <div class="flash-messages">
+      <% %i{error notice success}.each do |type| %>
+        <% if flash[type] %>
+          <div class="flash-message-<%= type %>"><%= flash[type] %></div>
+        <% end %>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>

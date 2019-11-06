@@ -1,0 +1,14 @@
+<%= render partial: 'shared/error_messages' %>
+<%=
+  form_for form do
+    div do
+      label 'Email'
+      text_field :email
+    end
+    div do
+      label 'Password'
+      password_field :password
+    end
+    submit 'Sign in'
+  end
+%>

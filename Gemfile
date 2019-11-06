@@ -1,25 +1,30 @@
 source 'https://rubygems.org'
 
-gem 'rake'
+gem 'bcrypt'
+gem 'dry-initializer'
+gem 'dry-transaction'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
-
 gem 'pg'
+gem 'rake'
 
 group :development do
-  # Code reloading
-  # See: https://guides.hanamirb.org/projects/code-reloading
-  gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
+  # TODO: fix shotgun issue
+  # gem 'shotgun', platforms: :ruby
 end
 
 group :test, :development do
   gem 'dotenv', '~> 2.4'
+  gem 'factory_bot'
+  gem 'faker'
+  gem 'pry-byebug'
 end
 
 group :test do
-  gem 'rspec'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'rspec-hanami'
 end
 
 group :production do

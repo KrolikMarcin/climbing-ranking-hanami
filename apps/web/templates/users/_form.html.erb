@@ -1,0 +1,32 @@
+<%=
+  form_for form do
+    div class: 'input form-group' do
+      label      :name
+      text_field :name, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label          :password
+      password_field :password, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label       :email
+      email_field :email, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label      :date_of_birth
+      date_field :date_of_birth, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label  :sex
+      select :sex, { man: false, women: true }, class: 'form-control'
+    end
+
+    div class: 'controls' do
+      submit submit_label, class: 'btn btn-success'
+    end
+  end
+%>

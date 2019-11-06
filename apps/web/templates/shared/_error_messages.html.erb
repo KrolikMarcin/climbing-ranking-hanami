@@ -1,0 +1,7 @@
+<% unless params.valid? %>
+  <ul>
+    <% params.error_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
