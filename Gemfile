@@ -16,11 +16,14 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.4'
+  gem 'factory_bot'
+  gem 'faker'
   gem 'pry-byebug'
 end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'rspec'
 end
 
