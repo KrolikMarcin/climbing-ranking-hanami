@@ -8,7 +8,7 @@ module Web
         params UserParams
 
         def call(params)
-          return unless params.valid?
+          return self.status = 400 unless params.valid?
 
           ::Users::CreateOrUpdateTransaction.new.call(user_params, &method(:handle_transaction))
         end
@@ -21,7 +21,10 @@ module Web
             redirect_to routes.path(:root)
           end
 
-          monad.failure(:create_or_update) { params.errors.add(:user, :email, 'is not unique') }
+          monad.failure(:create_or_update) do
+            self.status = 422
+            params.errors.add(:user, :email, 'is not unique')
+          end
         end
 
         def user_params

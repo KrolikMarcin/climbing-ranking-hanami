@@ -11,12 +11,12 @@ module Web
         expose :user
 
         def call(params)
-          return set_user unless params.valid?
+          return handle_invalid_params unless params.valid?
 
           ::Users::CreateOrUpdateTransaction
             .new
             .with_step_args(create_or_update: [current_user.id])
-            .call(params, &method(:handle_transaction))
+            .call(user_params, &method(:handle_transaction))
         end
 
         private
@@ -27,11 +27,19 @@ module Web
             redirect_to routes.user_path(id: current_user.id)
           end
 
-          monad.failure(:create_or_update) { params.errors.add(:user, :email, 'is not unique') }
+          monad.failure(:create_or_update) do
+            self.status = 422
+            params.errors.add(:user, :email, 'is not unique')
+          end
         end
 
-        def set_user
+        def handle_invalid_params
           @user = current_user
+          self.status = 400
+        end
+
+        def user_params
+          params.get(:user)
         end
       end
     end

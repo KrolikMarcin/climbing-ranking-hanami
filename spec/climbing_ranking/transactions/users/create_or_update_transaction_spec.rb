@@ -1,6 +1,7 @@
 RSpec.describe Users::CreateOrUpdateTransaction do
   let(:transaction_call) { transaction.call(params) }
   let(:transaction) { described_class.new }
+  let(:user_repo) { UserRepository.new }
   let(:params) do
     {
       name: Faker::Name.name,
@@ -10,13 +11,11 @@ RSpec.describe Users::CreateOrUpdateTransaction do
       password: Faker::Internet.password
     }
   end
-  let(:user_repo) { UserRepository.new }
 
   context 'when everything goes well' do
     let(:proper_attributes) { params.slice(:name, :email, :sex) }
 
     context 'when user id is not given' do
-
       it 'returns success' do
         expect(transaction_call.success?).to eq(true)
       end
@@ -47,8 +46,6 @@ RSpec.describe Users::CreateOrUpdateTransaction do
 
       it 'updates user with proper attributes' do
         expect(transaction_call.success).to include(proper_attributes)
-        expect(transaction_call.success.date_of_birth.to_date).to eq(params[:date_of_birth])
-        expect(BCrypt::Password.new(transaction_call.success.hashed_pass)).to eq(params[:password])
       end
     end
   end

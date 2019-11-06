@@ -6,6 +6,7 @@ module Web
           required(:user).schema do
             required(:name).filled(:str?)
             required(:email).filled(:str?, format?: /@/)
+            required(:sex).filled(:bool?)
             required(:password).filled(:str?)
             required(:date_of_birth).filled(:date?)
           end

@@ -12,7 +12,7 @@ module Web
           @user = UserRepository
                   .new
                   .find(params.get(:id))
-          # TODO: Find better option to handle invalid id
+
           halt(404, 'Not found') if @user.nil?
         end
       end
