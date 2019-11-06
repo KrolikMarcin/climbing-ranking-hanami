@@ -7,7 +7,7 @@ RSpec.describe Web::Controllers::Users::Edit, type: :action do
 
     include_context 'with authenticated user'
 
-    it { expect(response[0]).to eq 200 }
+    it { expect(response).to have_http_status(200) }
   end
 
   context 'when user is not authenticated' do

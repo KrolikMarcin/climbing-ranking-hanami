@@ -7,7 +7,8 @@ RSpec.describe Web::Controllers::Sessions::Destroy, type: :action do
 
     include_context 'with authenticated user'
 
-    it { expect(response[0]).to eq 302 }
+    it { expect(response).to have_http_status(302) }
+    it { expect(response).to redirect_to('/sessions/new') }
   end
 
   context 'when user is not authenticated' do

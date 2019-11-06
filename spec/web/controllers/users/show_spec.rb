@@ -10,13 +10,13 @@ RSpec.describe Web::Controllers::Users::Show, type: :action do
     context 'when user id exists' do
       let(:id) { user.id }
 
-      it { expect(response[0]).to eq 200 }
+      it { expect(response).to have_http_status(200) }
     end
 
     context 'when user id not exists' do
       let(:id) { 10 }
 
-      it { expect(response[0]).to eq 404 }
+      it { expect(response).to have_http_status(404) }
     end
   end
 

@@ -3,5 +3,5 @@ RSpec.describe Web::Controllers::Users::New, type: :action do
   let(:params) { Hash[] }
   let(:response) { action.call(params) }
 
-  it { expect(response[0]).to eq 200 }
+  it { expect(response).to have_http_status(200) }
 end

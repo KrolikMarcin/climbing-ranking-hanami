@@ -17,12 +17,13 @@ RSpec.describe Web::Controllers::Users::Update, type: :action do
     include_context 'with authenticated user'
 
     context 'when params are valid' do
-      it { expect(response[0]).to eq 302 }
+      it { expect(response).to have_http_status(302) }
+      it { expect(response).to redirect_to("/users/#{user.id}") }
     end
 
     context 'when params are invalid' do
       let(:user_params) { {} }
-      it { expect(response[0]).to eq 400 }
+      it { expect(response).to have_http_status(400) }
     end
 
     context 'when given email is not unique' do
@@ -30,7 +31,7 @@ RSpec.describe Web::Controllers::Users::Update, type: :action do
 
       before { user_params.merge!(email: another_user.email) }
 
-      it { expect(response[0]).to eq 422 }
+      it { expect(response).to have_http_status(422) }
     end
   end
 

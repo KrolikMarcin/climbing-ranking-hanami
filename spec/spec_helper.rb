@@ -24,6 +24,8 @@ Hanami::Utils.require!("#{__dir__}/support")
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.include RSpec::Hanami::Matchers
+  config.include RSpec::Hanami::RequestHelpers
   config.include FactoryBot::Syntax::Methods
   config.before(:suite) do
     FactoryBot.find_definitions

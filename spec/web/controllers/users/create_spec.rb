@@ -14,7 +14,8 @@ RSpec.describe Web::Controllers::Users::Create, type: :action do
 
   context 'when params are valid' do
     context 'when everything goes well' do
-      it { expect(response[0]).to eq 302 }
+      it { expect(response).to have_http_status(302) }
+      it { expect(response).to redirect_to('/') }
     end
 
     context 'when given email is not unique' do
@@ -22,13 +23,13 @@ RSpec.describe Web::Controllers::Users::Create, type: :action do
 
       before { user_params.merge!(email: user.email) }
 
-      it { expect(response[0]).to eq 422 }
+      it { expect(response).to have_http_status(422) }
     end
   end
 
   context 'when params are invalid' do
     let(:user_params) { {} }
 
-    it { expect(response[0]).to eq 400 }
+    it { expect(response).to have_http_status(400) }
   end
 end

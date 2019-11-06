@@ -24,7 +24,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'rspec'
+  gem 'rspec-hanami'
 end
 
 group :production do
