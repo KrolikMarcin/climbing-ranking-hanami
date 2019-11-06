@@ -9,10 +9,9 @@ module Users
 
     def encrypt_password(params)
       params
-        .get(:user)
-        .slice(:name, :email, :date_of_birth)
+        .slice(:name, :email, :date_of_birth, :sex)
         .merge(
-          hashed_pass: hashed_password(params.get(:user, :password))
+          hashed_pass: hashed_password(params.fetch(:password))
         )
     end
 
