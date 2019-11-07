@@ -1,0 +1,44 @@
+<%=
+  form_for form do
+    fields_for :line do
+      div class: 'input form-group' do
+        label      :name
+        text_field :name, class: 'form-control'
+      end
+
+      div class: 'input form-group' do
+        label  :grade
+        select :grade, grades, class: 'form-control'
+      end
+
+      div class: 'input form-group' do
+        label      :crag
+        text_field :crag, class: 'form-control'
+      end
+
+      div class: 'input form-group' do
+        label  :kind
+        select :kind, kinds, class: 'form-control'
+      end
+    end
+
+    div class: 'input form-group' do
+      label  :style
+      select :style, styles, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label      :belayer
+      text_field :belayer, class: 'form-control'
+    end
+
+    div class: 'input form-group' do
+      label      :date
+      date_field :date, class: 'form-control'
+    end
+
+    div class: 'controls' do
+      submit submit_label, class: 'btn btn-success'
+    end
+  end
+%>
