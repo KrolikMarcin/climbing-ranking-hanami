@@ -22,7 +22,6 @@ RSpec.describe Web::Controllers::Sessions::Create, type: :action do
     context 'when given email not exists' do
       let(:email) { 'invalid@google.com' }
 
-      it { expect(response[0]).to eq 404 }
       it { expect(response).to have_http_status(404) }
     end
 
