@@ -1,5 +1,5 @@
 <%=
-  form_for form do
+  form_for :ascent, routes.ascents_path do
     fields_for :line do
       div class: 'input form-group' do
         label      :name
@@ -8,7 +8,7 @@
 
       div class: 'input form-group' do
         label  :grade
-        select :grade, grades, class: 'form-control'
+        select :grade, Hash[Line::GRADES.map { |v| [v,v] }]
       end
 
       div class: 'input form-group' do
@@ -18,13 +18,13 @@
 
       div class: 'input form-group' do
         label  :kind
-        select :kind, kinds, class: 'form-control'
+        select :kind, Hash['line' => 'line', 'boulder' => 'boulder']
       end
     end
 
     div class: 'input form-group' do
       label  :style
-      select :style, styles, class: 'form-control'
+      select :style, Hash['os' => 'os', 'fl' => 'fl', 'rp' => 'rp']
     end
 
     div class: 'input form-group' do
@@ -38,7 +38,7 @@
     end
 
     div class: 'controls' do
-      submit submit_label, class: 'btn btn-success'
+      submit 'Add ascent', class: 'btn btn-success'
     end
   end
 %>
